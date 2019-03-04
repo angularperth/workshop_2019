@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {TimerService} from "./timer.service";
-import {AlarmService} from "./alarm.service";
 
 @NgModule({
   declarations: [
@@ -12,7 +11,7 @@ import {AlarmService} from "./alarm.service";
   imports: [
     BrowserModule
   ],
-  providers: [AlarmService, TimerService],
+  providers: [TimerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

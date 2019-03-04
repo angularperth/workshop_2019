@@ -1,30 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
 
-  taskInterval : number = 10;
-  breakInterval : number = 5;
-  longBreakCount : number = 4;
-  theTimer;
-  timeLeft;
+  timerName = "First Timer";
+  taskInterval = 10;
   timerRunning = false;
+  timeLeft = 0;
+  private theTimer;
 
-  myObservable : any;
+  constructor() { }
 
-  phase = '';
-
-  constructor() {
-    this.myObservable = Observable.create(observer => {
-      observer.next('foo');
-      setTimeout(() => observer.next('bar'), 1000);
-    });
-  }
-
-  startTimer() {
+  start()
+  {
     this.timeLeft = this.taskInterval;
     this.timerRunning = true;
     this.theTimer = setInterval(() => {
@@ -34,6 +24,6 @@ export class TimerService {
         this.timerRunning = false;
         clearInterval(this.theTimer);
       }
-    },1000)
+    },1000);
   }
 }
