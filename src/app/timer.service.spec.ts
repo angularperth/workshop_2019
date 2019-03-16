@@ -9,7 +9,7 @@ describe('TimerService', () => {
     jasmine.clock().install();
   });
 
-  afterEach(function() {
+  afterEach(()  => {
     jasmine.clock().uninstall();
   });
 
@@ -50,4 +50,14 @@ describe('TimerService', () => {
     jasmine.clock().tick(1001);
     expect(service.timerRunning).toBeFalsy();
   });
+
+  it('clearInterval called', () => {
+    spyOn(window, 'clearInterval');
+    const service: TimerService = TestBed.get(TimerService);
+    service.taskInterval = 0;
+    service.start();
+    jasmine.clock().tick(1001);
+    expect(clearInterval).toHaveBeenCalled();
+  });
+
 });

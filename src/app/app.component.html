@@ -8,7 +8,11 @@
 
 <p>Timer name is {{timer.timerName}}</p>
 <p>
-  <button id="startTimer" (click)="timer.start()">Start</button>
+  <button id="startTimer" (click)="timerStart()">Start timer</button>
   timer: {{timer.timeLeft}}
+  <br />
+  <button id="playAudio" (click)="alarm.play()">Play alarm</button>
+  <br />
+  Timer running?: {{timer.timerRunning}}
 </p>
 
