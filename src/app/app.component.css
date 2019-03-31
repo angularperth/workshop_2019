@@ -1,0 +1,9 @@
+p {
+  width: 100%;
+  text-align: center;
+}
+
+#timer {
+  font-size: 100pt;
+  font-family: Roboto, "Helvetica Neue", sans-serif, monospace;
+}

@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
 import { TimerService } from './timer.service';
 
@@ -51,6 +51,18 @@ describe('TimerService', () => {
     expect(service.timerRunning).toBeFalsy();
   });
 
+  it('the timer counted and played alarm', () => {
+    const service: TimerService = TestBed.get(TimerService);
+    let alarmSounded = false;
+    service.timerRunning$.subscribe((value) => {
+      alarmSounded = true;
+    });
+    service.taskInterval = 0;
+    service.start();
+    jasmine.clock().tick(1001);
+    expect(alarmSounded).toBeTruthy();
+  });
+
   it('clearInterval called', () => {
     spyOn(window, 'clearInterval');
     const service: TimerService = TestBed.get(TimerService);
@@ -60,4 +72,48 @@ describe('TimerService', () => {
     expect(clearInterval).toHaveBeenCalled();
   });
 
+  it('paused set', () => {
+    const service: TimerService = TestBed.get(TimerService);
+    service.taskInterval = 1;
+    service.start();
+    service.pause();
+    expect(service.timerPaused).toBeTruthy();
+  });
+
+  it('paused resumed', () => {
+    const service: TimerService = TestBed.get(TimerService);
+    service.taskInterval = 4;
+    service.start();
+    jasmine.clock().tick(1001);
+    service.pause();
+    expect(service.timerPaused).toBeTruthy();
+    jasmine.clock().tick(1001);
+    service.start();
+    expect(service.timeLeft).toBeLessThan(4);
+  });
+
+  it('paused resumed one second later', () => {
+    const service: TimerService = TestBed.get(TimerService);
+    service.taskInterval = 4;
+    service.start();
+    jasmine.clock().tick(1001);
+    service.pause();
+    expect(service.timerPaused).toBeTruthy();
+    service.start();
+    expect(service.timeLeft).toBe(2);
+  });
+
+  it('pause without sounding alarm', () => {
+    const service: TimerService = TestBed.get(TimerService);
+    let alarmSounded = false;
+    service.timerRunning$.subscribe((value) => {
+      alarmSounded = true;
+    });
+    service.taskInterval = 4;
+    service.start();
+    jasmine.clock().tick(1001);
+    service.pause();
+    jasmine.clock().tick(1001);
+    expect(alarmSounded).toBeFalsy();
+  });
 });

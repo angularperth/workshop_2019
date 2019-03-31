@@ -11,12 +11,18 @@ export class TimerService {
   isRunning = false;
   timerRunning$ = new Subject();
   timeLeft = 0;
+  timerPaused = false;
   private theTimer;
 
   constructor() { }
 
   start() {
-    this.timeLeft = this.taskInterval;
+    if (this.timerPaused) {
+      this.timerPaused = false;
+      this.timeLeft--;
+    } else {
+      this.timeLeft = this.taskInterval;
+    }
     this.timerRunning = true;
     this.theTimer = setInterval(() => {
       if (this.timeLeft > 0) {
@@ -28,8 +34,14 @@ export class TimerService {
     }, 1000);
   }
 
+  pause() {
+    this.timerPaused = true;
+    this.timerRunning = false;
+    clearInterval(this.theTimer);
+  }
+
   set timerRunning(value: boolean) {
-    if (this.isRunning && !value) { // only when the timer stops
+    if (!this.timerPaused && this.isRunning && !value) { // only when the timer stops
       this.timerRunning$.next(false);
     }
     this.isRunning = value;
