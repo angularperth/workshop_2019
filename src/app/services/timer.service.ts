@@ -40,6 +40,23 @@ export class TimerService {
     clearInterval(this.theTimer);
   }
 
+  formatted(value) {
+    let time = '';
+    const hours = Math.floor((value / 3600));
+    const minutes = Math.floor(((value - hours * 3600.0) / 60.0));
+    const seconds = value - (hours * 3600) - (minutes * 60);
+    console.log('formatted:', hours, minutes, seconds);
+    if (hours > 0) {
+      time = hours + ':';
+    }
+    time = time + minutes + ':';
+    if (seconds <= 9) {
+      time = time + '0';
+    }
+    time = time + seconds;
+    return time;
+  }
+
   set timerRunning(value: boolean) {
     if (!this.timerPaused && this.isRunning && !value) { // only when the timer stops
       this.timerRunning$.next(false);

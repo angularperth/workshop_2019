@@ -1,23 +1,13 @@
 <mat-toolbar color="primary">
-  <div>
-    Pomodoro Timer
-  </div>
+  <span>
+    <a routerLink="/timer" routerLinkActive="active">Pomodoro Timer</a>
+  </span>
+  <span class="filler"></span>
+  <span>
+    <a routerLink="/settings" routerLinkActive="active">
+      <mat-icon id="settings" class="icon">settings</mat-icon>
+    </a>
+  </span>
 </mat-toolbar>
 
-<p>
-  <span id="timer">{{timeFormated(timer.timeLeft)}}</span>
-  <br />
-  <Button id="startTimer" *ngIf="!timer.timerRunning" (click)="timerStart()">
-    <mat-icon class="icon" id="playBtn">play_circle_filled</mat-icon>
-  </Button>
-  <Button id="stopTimer" *ngIf="timer.timerRunning" (click)="timerPause()">
-    <mat-icon class="icon" id="pauseBtn">pause</mat-icon>
-  </Button>
-  <br />
-    <button id="playAudio" (click)="alarm.play()">Play alarm</button>
-  <br />
-  Timer running?: {{timer.timerRunning}}
-  <br />
-  Timer running test: {{timer.timerRunning === true}}
-</p>
-
+<router-outlet></router-outlet>

@@ -1,0 +1,33 @@
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+  <label>
+    Work Interval Duration:
+    <input type="number" pattern="\d*" formControlName="workIntervalDuration">
+    minutes
+  </label>
+  <br>
+  <label>
+    Short Break Duration:
+    <input type="number" formControlName="shortBreakDuration">
+    minutes
+  </label>
+  <br>
+  <label>
+    Long Break Duration:
+    <input type="number" formControlName="longBreakDuration">
+    minutes
+  </label>
+  <br>
+  <label>
+    Long Break After:
+    <input type="number" formControlName="longBreakInterval">
+    intervals
+  </label>
+  <br>
+  <label>
+    Target:
+    <input type="number" formControlName="targetIntervals">
+    intervals
+  </label>
+  <br>
+  <button type="submit" [disabled]="!settingsForm.valid">Submit</button>
+</form>

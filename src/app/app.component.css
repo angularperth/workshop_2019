@@ -3,7 +3,18 @@ p {
   text-align: center;
 }
 
-#timer {
-  font-size: 100pt;
-  font-family: Roboto, "Helvetica Neue", sans-serif, monospace;
+.filler {
+  flex: 1 1 auto;
+}
+
+mat-icon {
+  cursor: pointer;
+  text-align: center;
+}
+
+a {
+  text-decoration-line: none;
+}
+a:visited {
+  color: white;
 }

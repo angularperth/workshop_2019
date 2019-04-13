@@ -1,16 +1,28 @@
 import { TestBed, async } from '@angular/core/testing';
+import { MatIconModule, MatToolbarModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
-import {MatIconModule, MatToolbarModule} from '@angular/material';
+import { PageNotFoundComponent } from './view/page-not-found/page-not-found.component';
+import { SettingsComponent } from './view/settings/settings.component';
+import { TimerComponent } from './view/timer/timer.component';
 
 describe('AppComponent', () => {
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        PageNotFoundComponent,
+        SettingsComponent,
+        TimerComponent
       ],
       imports: [
+        RouterModule.forRoot([]),
         MatIconModule,
-        MatToolbarModule
+        MatToolbarModule,
+        ReactiveFormsModule
       ]
     }).compileComponents();
   }));
