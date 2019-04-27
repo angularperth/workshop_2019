@@ -22,11 +22,22 @@ export class SettingsComponent implements OnInit {
     this.settingsForm.setValue(settings);
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key >= '0' && event.key <= '9'
+        || event.key === 'Backspace'
+        || event.key === 'ArrowLeft'
+        || event.key === 'ArrowRight'
+        || event.key === 'Tab') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   onSubmit() {
     this.settingsService.update(this.settingsForm.getRawValue());
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
 }

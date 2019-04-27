@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsComponent } from './settings.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Settings } from '../../model/settings';
+import { MatInputModule } from '@angular/material';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -12,7 +13,8 @@ describe('SettingsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SettingsComponent ],
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatInputModule,
       ],
       providers: [ Settings ]
     })

@@ -45,7 +45,6 @@ export class TimerService {
     const hours = Math.floor((value / 3600));
     const minutes = Math.floor(((value - hours * 3600.0) / 60.0));
     const seconds = value - (hours * 3600) - (minutes * 60);
-    console.log('formatted:', hours, minutes, seconds);
     if (hours > 0) {
       time = hours + ':';
     }

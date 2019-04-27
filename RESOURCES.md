@@ -10,10 +10,13 @@ https://angular.io/docs
 https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.component.ts
 
 ## Generating Sounds from JavaScript
-http://marcgg.com/blog/2016/11/01/javascript-audio/
+- http://marcgg.com/blog/2016/11/01/javascript-audio/
 ### Other Sound Resources
 - https://developers.google.com/actions/tools/sound-library/
 - https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+
+## Local Storage
+- https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
 ## RxJs
 ### Tutorial

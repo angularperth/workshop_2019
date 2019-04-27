@@ -6,19 +6,29 @@ import { Settings } from '../model/settings';
 })
 export class SettingsService {
 
-  constructor(public settings: Settings) { }
+  static storageKey = 'angularPerth.workshop2019.settings';
+  myStorage: Storage;
+  retreivedFlag = false;
 
-  update(value: Settings) {
-    console.log('SettingsService.update: a: ', value);
-    this.settings.workIntervalDuration = value.workIntervalDuration;
-    this.settings.shortBreakDuration = value.shortBreakDuration;
-    this.settings.longBreakDuration = value.longBreakDuration;
-    this.settings.longBreakInterval = value.longBreakInterval;
-    this.settings.targetIntervals = value.targetIntervals;
-    console.log('SettingsService.update: b:', this.settings);
+  constructor(public settings: Settings) {
+    settings.update(this.retrieve());
+    this.retreivedFlag = true;
   }
 
-  retreive(): Settings {
-    return new Settings();
+    update(value: Settings) {
+    this.settings.update(value);
+    this.myStorage.setItem(SettingsService.storageKey, JSON.stringify(this.settings));
+  }
+
+  retrieve(): Settings {
+    if (this.myStorage == null) {
+      this.myStorage = window.localStorage;
+    }
+    const resultString = this.myStorage.getItem(SettingsService.storageKey);
+    let result = this.settings;
+    if (resultString != null) {
+      result = JSON.parse(resultString);
+    }
+    return result;
   }
 }

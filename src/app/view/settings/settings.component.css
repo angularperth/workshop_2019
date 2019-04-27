@@ -1,0 +1,23 @@
+button {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: large;
+  horiz-align: center;
+  flex: auto;
+}
+form {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: large;
+  display: grid;
+  grid-template-columns: 300px 70px 55px;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  padding: 10px;
+  text-align: right;
+  vertical-align: bottom;
+}
+
+input {
+  font-size: large;
+  vertical-align: middle;
+  width: 45px;
+}
