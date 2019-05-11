@@ -36,6 +36,8 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 ## Unit Testing
 - https://jasmine.github.io/api/3.3/global
 - https://jasmine.github.io/2.0/introduction.html#section-Mocking_the_JavaScript_Timeout_Functions
+### Property-based Testing
+- https://github.com/dubzzz/fast-check
 ## Material Design
 - https://material.io/tools/icons/?icon=play_circle_filled&style=baseline
 ## `packages.json`

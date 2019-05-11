@@ -1,43 +1,84 @@
 import { Injectable } from '@angular/core';
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
+
+import { TimerState } from '../model/timer-state.enum';
+import { Settings } from '../model/settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
 
+  state = TimerState.TASK;
+  stateChanged$ = new Subject();
+  taskCount = 0;
   timerName = 'First Timer';
-  taskInterval = 10;
   isRunning = false;
   timerRunning$ = new Subject();
   timeLeft = 0;
-  timerPaused = false;
+  clockPaused = false;
   private theTimer;
 
-  constructor() { }
+  constructor(private settings: Settings) { }
 
   start() {
-    if (this.timerPaused) {
-      this.timerPaused = false;
+    if (this.clockPaused) {
+      this.clockPaused = false;
       this.timeLeft--;
     } else {
-      this.timeLeft = this.taskInterval;
+      this.timeLeft = this.settings.workIntervalSeconds;
     }
     this.timerRunning = true;
     this.theTimer = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.timerRunning = false;
-        clearInterval(this.theTimer);
+        // this.timerRunning = false;
+        // clearInterval(this.theTimer);
+        this.stateChanged$.next(true);
+        if (this.state === TimerState.TASK) {
+          this.taskCount++;
+        }
+        this.state = this.nextState(this.state);
+        this.timeLeft = this.stateDuration(this.state);
       }
     }, 1000);
   }
 
+  nextState(currentState) {
+    switch (currentState) {
+      case TimerState.TASK:
+        if (this.taskCount % this.settings.longBreakInterval === 0) {
+          return TimerState.LONG_BREAK;
+        } else {
+          return TimerState.BREAK;
+        }
+        break;
+      case TimerState.BREAK:
+      case TimerState.LONG_BREAK:
+        return TimerState.TASK;
+        break;
+    }
+  }
+
   pause() {
-    this.timerPaused = true;
+    this.clockPaused = true;
     this.timerRunning = false;
     clearInterval(this.theTimer);
+  }
+
+  stateDuration(currentState) {
+    switch (currentState) {
+      case TimerState.TASK:
+        return this.settings.workIntervalSeconds;
+        break;
+      case TimerState.BREAK:
+        return this.settings.shortBreakSeconds;
+        break;
+      case TimerState.LONG_BREAK:
+        return this.settings.longBreakSeconds;
+        break;
+    }
   }
 
   formatted(value) {
@@ -57,7 +98,7 @@ export class TimerService {
   }
 
   set timerRunning(value: boolean) {
-    if (!this.timerPaused && this.isRunning && !value) { // only when the timer stops
+    if (!this.clockPaused && this.isRunning && !value) { // only when the timer stops
       this.timerRunning$.next(false);
     }
     this.isRunning = value;

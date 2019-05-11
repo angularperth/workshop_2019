@@ -12,4 +12,16 @@ export class Settings {
     this.longBreakInterval = value.longBreakInterval;
     this.targetIntervals = value.targetIntervals;
   }
+
+  get workIntervalSeconds() {
+    return this.workIntervalDuration * 60;
+  }
+
+  get shortBreakSeconds() {
+    return this.shortBreakDuration * 60;
+  }
+
+  get longBreakSeconds() {
+    return this.longBreakDuration * 60;
+  }
 }

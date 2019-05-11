@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material';
 
 import { TimerComponent } from './timer.component';
+import { Settings } from '../../model/settings';
 
 describe('TimerComponent', () => {
   let component: TimerComponent;
@@ -14,6 +15,7 @@ describe('TimerComponent', () => {
       imports: [
         MatIconModule
       ],
+      providers: [ Settings ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();

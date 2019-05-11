@@ -12,8 +12,7 @@ export class TimerComponent implements OnInit {
   constructor(public timer: TimerService, public alarm: AlarmService) { }
 
   timerStart() {
-    this.timer.taskInterval = 1500;
-    this.timer.timerRunning$.subscribe((value) => {
+    this.timer.stateChanged$.subscribe((value) => {
       this.alarm.play();
     });
     this.timer.start();
