@@ -8,7 +8,7 @@ import { SettingsService } from '../../services/settings.service';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
   settingsForm = new FormGroup({
     workIntervalDuration: new FormControl(''),
@@ -38,6 +38,4 @@ export class SettingsComponent implements OnInit {
     this.settingsService.update(this.settingsForm.getRawValue());
   }
 
-  ngOnInit(): void {
-  }
 }

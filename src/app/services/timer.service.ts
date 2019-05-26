@@ -9,38 +9,45 @@ import { Settings } from '../model/settings';
 })
 export class TimerService {
 
-  state = TimerState.TASK;
+  _state = TimerState.TASK;
   stateChanged$ = new Subject();
   taskCount = 0;
   timerName = 'First Timer';
   isRunning = false;
   timerRunning$ = new Subject();
-  timeLeft = 0;
+  timeLeft = this.stateDuration(this.state);
   clockPaused = false;
   private theTimer;
 
-  constructor(private settings: Settings) { }
+  constructor(private settings: Settings) {
+    this.refresh();
+  }
 
   start() {
     if (this.clockPaused) {
       this.clockPaused = false;
       this.timeLeft--;
     } else {
-      this.timeLeft = this.settings.workIntervalSeconds;
+      this.timeLeft = this.stateDuration(this.state);
     }
     this.timerRunning = true;
     this.theTimer = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        // this.timerRunning = false;
-        // clearInterval(this.theTimer);
-        this.stateChanged$.next(true);
-        if (this.state === TimerState.TASK) {
-          this.taskCount++;
+        if (this.taskCount === this.settings.targetIntervals) {
+          this.timerRunning = false;
+          this.taskCount = 0;
+          this.state = TimerState.TASK;
+          clearInterval(this.theTimer);
+        } else {
+          this.stateChanged$.next(true);
+          if (this.state === TimerState.TASK) {
+            this.taskCount++;
+          }
+          this.state = this.nextState(this.state);
+          this.timeLeft = this.stateDuration(this.state);
         }
-        this.state = this.nextState(this.state);
-        this.timeLeft = this.stateDuration(this.state);
       }
     }, 1000);
   }
@@ -67,17 +74,9 @@ export class TimerService {
     clearInterval(this.theTimer);
   }
 
-  stateDuration(currentState) {
-    switch (currentState) {
-      case TimerState.TASK:
-        return this.settings.workIntervalSeconds;
-        break;
-      case TimerState.BREAK:
-        return this.settings.shortBreakSeconds;
-        break;
-      case TimerState.LONG_BREAK:
-        return this.settings.longBreakSeconds;
-        break;
+  refresh() {
+    if (!this.isRunning) {
+      this.timeLeft = this.stateDuration(this.state);
     }
   }
 
@@ -95,6 +94,51 @@ export class TimerService {
     }
     time = time + seconds;
     return time;
+  }
+
+  nameOfState(currentState): string {
+    switch (currentState) {
+      case TimerState.BREAK:
+        return 'Taking a Break';
+        break;
+      case TimerState.LONG_BREAK:
+        return 'Taking a Long Break';
+        break;
+      case TimerState.TASK:
+        return 'Working on a Task';
+        break;
+    }
+  }
+
+  set state(value) {
+    this._state = value;
+  }
+
+  get state() {
+    return this._state;
+  }
+
+  stateDuration(currentState) {
+    if (isNaN(this.timeLeft)) {
+      this.timeLeft = 0;
+    }
+    let result = 0;
+    switch (currentState) {
+      case TimerState.TASK:
+        result = (this.timeLeft === 0) ? this.settings.workIntervalSeconds : this.timeLeft;
+        break;
+      case TimerState.BREAK:
+        result = (this.timeLeft === 0) ? this.settings.shortBreakSeconds : this.timeLeft;
+        break;
+      case TimerState.LONG_BREAK:
+        result = (this.timeLeft === 0) ? this.settings.longBreakSeconds : this.timeLeft;
+        break;
+    }
+    return result;
+  }
+
+  get stateName(): string {
+    return this.nameOfState(this.state);
   }
 
   set timerRunning(value: boolean) {

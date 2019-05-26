@@ -1,4 +1,8 @@
 <p>
+  <span id="stateName">{{timer.stateName}}</span>
+  <br />
+  <span>Task {{timer.taskCount}} of {{settingsService.settings.targetIntervals}} state: {{timer.state}}</span>
+  <br />
   <span id="timer">{{timer.formatted(timer.timeLeft)}}</span>
   <br />
   <Button id="startTimer" *ngIf="!timer.timerRunning" (click)="timerStart()">

@@ -15,7 +15,7 @@ export class SettingsService {
     this.retreivedFlag = true;
   }
 
-    update(value: Settings) {
+  update(value: Settings) {
     this.settings.update(value);
     this.myStorage.setItem(SettingsService.storageKey, JSON.stringify(this.settings));
   }

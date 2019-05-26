@@ -3,6 +3,11 @@ p {
   text-align: center;
 }
 
+#stateName {
+  font-size: xx-large;
+  font-family: Roboto, "Helvetica Neue", sans-serif, monospace;
+}
+
 #timer {
   font-size: 100pt;
   font-family: Roboto, "Helvetica Neue", sans-serif, monospace;

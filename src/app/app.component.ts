@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingsService } from './services/settings.service';
 
 @Component ({
   selector: 'app-root',
@@ -8,8 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'My First Angular App';
 
-  constructor() {
+  constructor(private settingsService: SettingsService) {
+    settingsService.retrieve();
   }
-
-
 }

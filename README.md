@@ -1,6 +1,6 @@
 # Test0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+This project was generated with [Angular CLI](https://cli.angular.io/) version 7.3.9.
 
 ## Development server
 
