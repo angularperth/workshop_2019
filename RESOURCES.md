@@ -42,5 +42,6 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 - https://material.io/tools/icons/?icon=play_circle_filled&style=baseline
 ## Electron
 - https://malcoded.com/posts/angular-desktop-electron/
+- https://medium.com/@yannmjl/how-to-build-native-cross-platform-desktop-apps-with-angular-electron-bd1d6e3919b2
 ## `packages.json`
 - https://docs.npmjs.com/misc/semver
