@@ -124,15 +124,15 @@ export class TimerService {
     }
     let result = 0;
     switch (currentState) {
-      case TimerState.TASK:
-        result = (this.timeLeft === 0) ? this.settings.workIntervalSeconds : this.timeLeft;
-        break;
-      case TimerState.BREAK:
-        result = (this.timeLeft === 0) ? this.settings.shortBreakSeconds : this.timeLeft;
-        break;
-      case TimerState.LONG_BREAK:
-        result = (this.timeLeft === 0) ? this.settings.longBreakSeconds : this.timeLeft;
-        break;
+        case TimerState.TASK:
+          result = (this.timeLeft === 0) ? this.settings.workIntervalSeconds : this.timeLeft;
+          break;
+        case TimerState.BREAK:
+          result = (this.timeLeft === 0) ? this.settings.shortBreakSeconds : this.timeLeft;
+          break;
+        case TimerState.LONG_BREAK:
+          result = (this.timeLeft === 0) ? this.settings.longBreakSeconds : this.timeLeft;
+          break;
     }
     return result;
   }

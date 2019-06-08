@@ -25,4 +25,5 @@ export class TimerComponent implements AfterViewChecked {
   ngAfterViewChecked(): void {
     this.timer.refresh();
   }
+
 }

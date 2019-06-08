@@ -42,9 +42,12 @@ describe('TimerService', () => {
 
   it('the timer task count increased', () => {
     const service: TimerService = TestBed.get(TimerService);
-    spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(0);
+    settings.workIntervalDuration = 0;
+    settings.shortBreakDuration = 0;
+    service.taskCount = 0;
     const oldTaskCount = service.taskCount;
     service.start();
+    jasmine.clock().tick(1001);
     jasmine.clock().tick(1001);
     expect(service.taskCount).toBeGreaterThan(oldTaskCount);
     service.pause();
@@ -56,7 +59,8 @@ describe('TimerService', () => {
     service.stateChanged$.subscribe((value) => {
       alarmSounded = true;
     });
-    spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(0);
+    settings.workIntervalDuration = 0;
+    service.timeLeft = 0;
     service.start();
     jasmine.clock().tick(1001);
     service.pause();
@@ -83,8 +87,7 @@ describe('TimerService', () => {
 
   it('paused resumed', () => {
     const service: TimerService = TestBed.get(TimerService);
-    spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(4);
-
+    service.timeLeft = 4;
     service.start();
     jasmine.clock().tick(1001);
     service.pause();
@@ -97,6 +100,7 @@ describe('TimerService', () => {
   it('paused resumed one second later', () => {
     const service: TimerService = TestBed.get(TimerService);
     spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(4);
+    service.timeLeft = 0;
     service.start();
     jasmine.clock().tick(1001);
     service.pause();
@@ -140,6 +144,8 @@ describe('TimerService', () => {
   it('should change state from TASK to BREAK', () => {
     const service: TimerService = TestBed.get(TimerService);
     spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(0);
+    service.state = TimerState.TASK;
+    service.timeLeft = 0;
     service.start();
     expect(service.state).toEqual(TimerState.TASK);
     jasmine.clock().tick(1001);
@@ -149,8 +155,10 @@ describe('TimerService', () => {
 
   it('should change state from BREAK to TASK', () => {
     const service: TimerService = TestBed.get(TimerService);
-    spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(0);
-    spyOnProperty(settings, 'shortBreakSeconds', 'get').and.returnValue(0);
+    settings.workIntervalDuration = 0;
+    settings.shortBreakDuration = 0;
+    service.timeLeft = 0;
+    service.state = TimerState.TASK;
     service.start();
     expect(service.state).toEqual(TimerState.TASK);
     jasmine.clock().tick(1001);
@@ -162,10 +170,11 @@ describe('TimerService', () => {
 
   it('should change state from TASK to LONG BREAK', () => {
     const service: TimerService = TestBed.get(TimerService);
-    spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(0);
-    spyOnProperty(settings, 'shortBreakSeconds', 'get').and.returnValue(0);
-    spyOnProperty(settings, 'longBreakSeconds', 'get').and.returnValue(0);
     settings.longBreakInterval = 2;
+    settings.longBreakDuration = 0;
+    settings.shortBreakDuration = 0;
+    settings.workIntervalDuration = 0;
+    service.timeLeft = 0;
     service.start();
     expect(service.state).toEqual(TimerState.TASK);
     jasmine.clock().tick(1001);

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Settings } from '../../model/settings';
 import { SettingsService } from '../../services/settings.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -18,7 +19,7 @@ export class SettingsComponent {
     targetIntervals: new FormControl(''),
   });
 
-  constructor(public settings: Settings, public settingsService: SettingsService) {
+  constructor(public settings: Settings, public settingsService: SettingsService, private router: Router) {
     this.settingsForm.setValue(settings);
   }
 
@@ -36,6 +37,7 @@ export class SettingsComponent {
 
   onSubmit() {
     this.settingsService.update(this.settingsForm.getRawValue());
+    this.router.navigate(['/timer']);
   }
 
 }

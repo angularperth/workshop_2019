@@ -1,13 +1,16 @@
 {
   "name": "test0",
   "version": "0.0.0",
+  "main": "electron/dist/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "electron-build": "ng build --base-href ./ && tsc --p electron && electron ."
   },
   "private": true,
   "dependencies": {
@@ -34,10 +37,13 @@
     "@angular/cli": "^7.3.9",
     "@angular/compiler-cli": "^7.2.15",
     "@angular/language-service": "^7.2.15",
+    "@types/electron": "^1.6.10",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^8.10.48",
     "codelyzer": "~4.5.0",
+    "electron": "^5.0.3",
+    "electron-packager": "^13.1.1",
     "fast-check": "^1.15.1",
     "jasmine-core": "^3.4.0",
     "jasmine-spec-reporter": "~4.2.1",

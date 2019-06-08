@@ -40,5 +40,7 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 - https://github.com/dubzzz/fast-check
 ## Material Design
 - https://material.io/tools/icons/?icon=play_circle_filled&style=baseline
+## Electron
+- https://malcoded.com/posts/angular-desktop-electron/
 ## `packages.json`
 - https://docs.npmjs.com/misc/semver
