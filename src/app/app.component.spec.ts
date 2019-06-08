@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './view/page-not-found/page-not-found.component';
 import { SettingsComponent } from './view/settings/settings.component';
 import { TimerComponent } from './view/timer/timer.component';
+import { Settings } from './model/settings';
 
 describe('AppComponent', () => {
 
@@ -23,6 +24,9 @@ describe('AppComponent', () => {
         MatIconModule,
         MatToolbarModule,
         ReactiveFormsModule
+      ],
+      providers: [
+        Settings
       ]
     }).compileComponents();
   }));
