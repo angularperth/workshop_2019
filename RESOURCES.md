@@ -36,6 +36,7 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 ## Unit Testing
 - https://jasmine.github.io/api/3.3/global
 - https://jasmine.github.io/2.0/introduction.html#section-Mocking_the_JavaScript_Timeout_Functions
+- https://stackoverflow.com/questions/55388259/cannot-compare-enums-in-jasmine-after-angular-migration-from-6-to-7
 ### Property-based Testing
 - https://github.com/dubzzz/fast-check
 ## Material Design
@@ -45,3 +46,5 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 - https://medium.com/@yannmjl/how-to-build-native-cross-platform-desktop-apps-with-angular-electron-bd1d6e3919b2
 ## `packages.json`
 - https://docs.npmjs.com/misc/semver
+## Other
+- https://developers.google.com/web/tools/lighthouse/

@@ -65,6 +65,7 @@ describe('TimerService', () => {
     jasmine.clock().tick(1001);
     service.pause();
     expect(alarmSounded).toBeTruthy();
+    service.stateChanged$.unsubscribe();
   });
 
   it('clearInterval called', () => {
@@ -121,6 +122,7 @@ describe('TimerService', () => {
     service.pause();
     jasmine.clock().tick(1001);
     expect(alarmSounded).toBeFalsy();
+    service.timerRunning$.unsubscribe();
   });
 
   it('should display the current timer value', () => {
@@ -144,7 +146,7 @@ describe('TimerService', () => {
   it('should change state from TASK to BREAK', () => {
     const service: TimerService = TestBed.get(TimerService);
     spyOnProperty(settings, 'workIntervalSeconds', 'get').and.returnValue(0);
-    service.state = TimerState.TASK;
+    // service.state = TimerState.TASK;
     service.timeLeft = 0;
     service.start();
     expect(service.state).toEqual(TimerState.TASK);
@@ -158,7 +160,7 @@ describe('TimerService', () => {
     settings.workIntervalDuration = 0;
     settings.shortBreakDuration = 0;
     service.timeLeft = 0;
-    service.state = TimerState.TASK;
+    // service.state = TimerState.TASK;
     service.start();
     expect(service.state).toEqual(TimerState.TASK);
     jasmine.clock().tick(1001);

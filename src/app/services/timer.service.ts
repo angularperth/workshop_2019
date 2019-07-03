@@ -12,16 +12,14 @@ export class TimerService {
   _state = TimerState.TASK;
   stateChanged$ = new Subject();
   taskCount = 0;
-  timerName = 'First Timer';
   isRunning = false;
+  timerReset = false;
   timerRunning$ = new Subject();
   timeLeft = this.stateDuration(this.state);
   clockPaused = false;
   private theTimer;
 
-  constructor(private settings: Settings) {
-    this.refresh();
-  }
+  constructor(private settings: Settings) {}
 
   start() {
     if (this.clockPaused) {
@@ -74,10 +72,14 @@ export class TimerService {
     clearInterval(this.theTimer);
   }
 
-  refresh() {
-    if (!this.isRunning) {
-      this.timeLeft = this.stateDuration(this.state);
-    }
+  reset() {
+    this.timerReset = true;
+    this.state = TimerState.TASK;
+    this.isRunning = false;
+    this.timerRunning = false;
+    this.clockPaused = false;
+    this.timeLeft = this.stateDuration(this.state);
+    this.timerReset = false;
   }
 
   formatted(value) {
@@ -122,17 +124,19 @@ export class TimerService {
     if (isNaN(this.timeLeft)) {
       this.timeLeft = 0;
     }
-    let result = 0;
-    switch (currentState) {
+    let result = this.timeLeft;
+    if (this.timeLeft === 0 || this.timerReset) {
+      switch (currentState) {
         case TimerState.TASK:
-          result = (this.timeLeft === 0) ? this.settings.workIntervalSeconds : this.timeLeft;
+          result = this.settings.workIntervalSeconds;
           break;
         case TimerState.BREAK:
-          result = (this.timeLeft === 0) ? this.settings.shortBreakSeconds : this.timeLeft;
+          result = this.settings.shortBreakSeconds;
           break;
         case TimerState.LONG_BREAK:
-          result = (this.timeLeft === 0) ? this.settings.longBreakSeconds : this.timeLeft;
+          result = this.settings.longBreakSeconds;
           break;
+      }
     }
     return result;
   }

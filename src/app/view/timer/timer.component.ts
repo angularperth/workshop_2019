@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { AlarmService } from '../../services/alarm.service';
 import { SettingsService } from '../../services/settings.service';
@@ -8,9 +8,13 @@ import { SettingsService } from '../../services/settings.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
-export class TimerComponent implements AfterViewChecked {
+export class TimerComponent {
 
-  constructor(public timer: TimerService, public alarm: AlarmService, public settingsService: SettingsService) { }
+  constructor(public timer: TimerService, public alarm: AlarmService, public settingsService: SettingsService) {
+    this.settingsService.settingsChanged$.subscribe((value) => {
+      this.timer.reset();
+    });
+  }
 
   timerStart() {
     this.timer.stateChanged$.subscribe((value) => {
@@ -22,8 +26,8 @@ export class TimerComponent implements AfterViewChecked {
     this.timer.pause();
   }
 
-  ngAfterViewChecked(): void {
-    this.timer.refresh();
+  destroy() {
+    this.settingsService.settingsChanged$.unsubscribe();
+    this.timer.stateChanged$.unsubscribe();
   }
-
 }
