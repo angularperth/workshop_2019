@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test0": {
+    "PomodoroTimer": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -20,7 +20,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.css"
@@ -51,25 +52,27 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "test0:build"
+            "browserTarget": "PomodoroTimer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "test0:build:production"
+              "browserTarget": "PomodoroTimer:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test0:build"
+            "browserTarget": "PomodoroTimer:build"
           }
         },
         "test": {
@@ -85,7 +88,8 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ]
           }
         },
@@ -132,5 +136,5 @@
       }
     }
   },
-  "defaultProject": "test0"
+  "defaultProject": "PomodoroTimer"
 }

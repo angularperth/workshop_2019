@@ -1,4 +1,4 @@
-# Test0
+# PomodoroTimer
 
 This project was generated with [Angular CLI](https://cli.angular.io/) version 7.3.9.
 

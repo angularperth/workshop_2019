@@ -4,7 +4,7 @@ import { SettingsComponent } from './settings.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Settings } from '../../model/settings';
 import { Router } from '@angular/router';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;

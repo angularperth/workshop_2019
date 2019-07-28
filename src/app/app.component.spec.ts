@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
-import { MatIconModule, MatToolbarModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
