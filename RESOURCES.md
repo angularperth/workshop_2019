@@ -41,9 +41,16 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 - https://github.com/dubzzz/fast-check
 ## Material Design
 - https://material.io/tools/icons/?icon=play_circle_filled&style=baseline
-## Electron
+## PWA
+- https://blog.angular-university.io/angular-service-worker/
+## [Electron](https://github.com/electron)
 - https://malcoded.com/posts/angular-desktop-electron/
 - https://medium.com/@yannmjl/how-to-build-native-cross-platform-desktop-apps-with-angular-electron-bd1d6e3919b2
+- [Electron Packager Interactive](https://github.com/Urucas/electron-packager-interactive)
+- [Electron Packager](https://github.com/electron-userland/electron-packager)
+- [Multi-sized Icons Generation](https://www.favicon-generator.org/)
+## Ionic
+- [Adding Ionic to an Existing Angular project](https://stack247.wordpress.com/2019/03/11/integrate-ionic-in-existing-angular-project/)
 ## `packages.json`
 - https://docs.npmjs.com/misc/semver
 ## Other

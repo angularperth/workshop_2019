@@ -12,9 +12,15 @@ mat-icon {
   text-align: center;
 }
 
+/*  fixes toolbar link visited color not being white in electron */
+mat-toolbar > span > a {
+  color: white;
+}
+
 a {
   text-decoration-line: none;
 }
+
 a:visited {
   color: white;
 }
