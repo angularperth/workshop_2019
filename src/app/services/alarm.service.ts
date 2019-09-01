@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AudioContext } from 'angular-audio-context';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class AlarmService {
   context;
   oscillator;
   gain;
+  counter;
 
   constructor() {
     this.context = new AudioContext();
@@ -20,6 +22,10 @@ export class AlarmService {
     this.oscillator.type = 'triangle';
     this.gain.connect(this.context.destination);
     this.oscillator.start();
-    this.gain.gain.exponentialRampToValueAtTime(0.00001, this.context.currentTime + 1.5);
+    const delay = setTimeout(() => {
+        this.gain.gain.exponentialRampToValueAtTime(0.00001, this.context.currentTime + .025);
+        clearTimeout(delay);
+      }, 250);
+
   }
 }

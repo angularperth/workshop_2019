@@ -3,21 +3,47 @@ button {
   font-size: large;
   horiz-align: center;
   flex: auto;
+  width: fit-content;
 }
 form {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: large;
   display: grid;
-  grid-template-columns: 300px 70px 55px;
+  grid-template-columns: 300px 70px auto;
   grid-template-rows: auto;
   grid-gap: 10px;
-  padding: 10px;
-  text-align: right;
+  padding-left: 0px;
   vertical-align: bottom;
+}
+
+div#formContainer {
+  display: flex;
+  justify-content: center;
 }
 
 input {
   font-size: large;
   vertical-align: middle;
   width: 45px;
+}
+
+label.prefixText {
+  text-align: right;
+}
+
+label.suffixText {
+  text-align: left;
+}
+@media (max-width: 640px) {
+  button {
+    font-size: 120%;
+  }
+  form {
+    font-size: 120%;
+    grid-template-columns: auto 45px auto;
+  }
+  input {
+    font-size: 120%;
+    width: 80%;
+  }
 }

@@ -43,6 +43,8 @@ https://stackblitz.com/edit/timer-with-pause-wyuwbq?file=src%2Fapp%2Fapp.compone
 - https://material.io/tools/icons/?icon=play_circle_filled&style=baseline
 ## PWA
 - https://blog.angular-university.io/angular-service-worker/
+## Responsive Design
+- https://developers.google.com/web/fundamentals/design-and-ux/responsive/
 ## [Electron](https://github.com/electron)
 - https://malcoded.com/posts/angular-desktop-electron/
 - https://medium.com/@yannmjl/how-to-build-native-cross-platform-desktop-apps-with-angular-electron-bd1d6e3919b2

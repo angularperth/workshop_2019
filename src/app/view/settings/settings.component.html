@@ -1,20 +1,21 @@
-<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
-  <label>Work Interval Duration</label>
-  <input type="number" formControlName="workIntervalDuration" (keydown)="onKeyDown($event)">
-  <label>minutes</label>
-  <label>Short Break Duration:</label>
-  <input type="number" formControlName="shortBreakDuration" (keydown)="onKeyDown($event)">
-  <label>minutes</label>
-  <label>Long Break Duration:</label>
-  <input type="number" formControlName="longBreakDuration" (keydown)="onKeyDown($event)">
-  <label>minutes</label>
-  <label>Long Break After:</label>
-  <input type="number" formControlName="longBreakInterval" (keydown)="onKeyDown($event)">
-  <label>intervals</label>
-  <label>Target:</label>
-  <input type="number" formControlName="targetIntervals" (keydown)="onKeyDown($event)">
-  <label>intervals</label>
-  <label></label>
-  <button type="submit" [disabled]="!settingsForm.valid">Submit</button>
-  <label></label>
-</form>
+<div id="formContainer">
+  <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <label class="prefixText">Work&nbsp;Interval&nbsp; Duration:</label>
+    <input type="number" formControlName="workIntervalDuration" (keydown)="onKeyDown($event)">
+    <label class="suffixText">minutes</label>
+    <label class="prefixText">Short&nbsp;Break&nbsp;Duration:</label>
+    <input type="number" formControlName="shortBreakDuration" (keydown)="onKeyDown($event)">
+    <label class="suffixText">minutes</label>
+    <label class="prefixText">Long&nbsp;Break&nbsp;Duration:</label>
+    <input type="number" formControlName="longBreakDuration" (keydown)="onKeyDown($event)">
+    <label class="suffixText">minutes</label>
+    <label class="prefixText">Long&nbsp;Break After:</label>
+    <input type="number" formControlName="longBreakInterval" (keydown)="onKeyDown($event)">
+    <label class="suffixText">intervals</label>
+    <label class="prefixText">Target:</label>
+    <input type="number" formControlName="targetIntervals" (keydown)="onKeyDown($event)">
+    <label class="suffixText">intervals</label>
+    <label></label>
+    <button type="submit" [disabled]="!settingsForm.valid">Submit</button>
+  </form>
+</div>
